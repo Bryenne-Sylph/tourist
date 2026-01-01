@@ -5,6 +5,12 @@
 
 This addon creates a loading screen every time Final Fantasy XI would go to a black screen to load a new area. Since Final Fantasy XI does not have one single 'zoning' method, it is not guaranteed the loading image works correctly in all instances. Please report missing loading screen moments so we can add them (DM me on the windower discord is best or email me at mrrudix@gmail.com).
 
+### Installation
+
+Download the entirity of this repository to: ```[your-windower-path]/addons/tourist```
+Add this line to your init.txt: ```lua load tourist```
+Or load it manually in-game by typing: ```lua load tourist```
+
 ## COMMANDS
 
 Use //tourist to give these COMMANDS
