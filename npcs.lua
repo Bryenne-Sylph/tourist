@@ -74,6 +74,13 @@ return {
 	['gaddieux'] = {
 		[256] = {zone=262} -- Western Adoulin > Foret de Henetiel (RUN AF cutscene)
 	},
+	['green thumb moogle'] = {
+		[49] = {zone=230}, -- use shining star to go to San d'Oria
+		[50] = {zone=234}, -- use shining star to go to Bastok
+		[51] = {zone=238}, -- use shining star to go to Windurst
+		[4092] = {zone=257}, -- Mog Garden > Eastern Adoulin
+		[4093] = {zone=256} -- Mog Garden > Western Adoulin
+	},
 	['iron grate'] = {
 		[1] = {zone=9} -- Pso'Xja
 	},
