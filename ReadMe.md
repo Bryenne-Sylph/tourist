@@ -41,102 +41,64 @@ This will show the image for zone 230 (Southern San d'Oria). Leave the number bl
 # CHANGELOG
 
 TODO:
-* Warping to Abyssea zones through an NPC
-* Unity Warps
-* Death warp
-* Einherjar
-* Dynamis II
+* Diorama zones (ballista/brenner)
+* TVR Final Zones (Silver Knife / Gwora corridor / Throne Room)
+* Feretory
+* Vagary / Delve
+* Ruhotz Silver Mines / Everbloom Hollow
 
-### v0.9.5
-Added support for saving/loading settings + added support for Qufim <> Misareaux Coast Swirling Vortex
-note: [cawarps.lua], and [abyssea.lua] no longer exist, as functionality for these zones has been integrated in [npcs.lua] and [dialogs.lua]
+Known Issues:
+* Sometimes Warp activates so fast Tourist misses it
+* Certain cutscenes might load a different zone, this is generally not supported
+* There is no way to check what your allegiance in the Crystal War era is (for retrace), Tourist will show a general Crystal War loading screen the first time, but save your allegiance after the first time Retrace is used. 
 
-### v0.9.4
-Completely redid entire lookup logic for dialogs and npcs, so I could delete about ~40% of the code
+### v1.0
+Release to the public. Please report errors / missing loading screens!
 
-### v0.9.3
-Added support for the ferry between Nashmau and Al Zahbi
+### v0.9.7
+Code Cleanup
+
+### v0.9.6
+Added functionality that automatically uses the last zone's loading screen if you zone witout player action, to cover auto-ejection from zones after a time out.
 
 ### v0.9.2
-Added support for Salvage areas, and using fireflies to exit zones
+Added support for saving/loading settings - note: [cawarps.lua], [pwaypoints.lua] and [abyssea.lua] no longer exist, as functionality for these zones has been integrated in [npcs.lua] and [dialogs.lua]
 
 ### v0.9.1
-Added support for Repatriation through Grounds Tome
+Completely redid entire lookup logic for dialogs and npcs, so I could delete about ~40% of the code
 
 ### v0.9
 Added table and teleportation support for Voidwatch NPCs and Unity NPCs. The table is [vw.lua] or [unity.lua]
 
-### v0.8.6
-Added support for city to city teleporting through the Explorer Moogle. 
-
 ### v0.8.5
-Added support for Riverne's spatial displacements and Monarch Linn. 
+Added support for city to city teleporting through the Explorer Moogle. Added support for Domenic (Lower Jeuno, Tenshodo HQ) special teleports to certain BCNM locations + two warp tarus in Whitegate
 
 ### v0.8.4
-Added support and table for teleporting by using the Proto-Waypoints. The table is [pwaypoints.lua]
-
-### v0.8.3
 Changed how Tourist handles most single-dialog zoning, now using a table instead of individial logic. The table is [dialogs.lua]
 
+### v0.8.3
+Added support for entering and exiting all Promyvion zones. Added support for Entering and leaving Apollyon from Al'Taieu. 
+
 ### v0.8.2
-Added support for Purgonorgo Isle to have its own loading screen, even though it is Bibiki Bay. When taking the manaclipper it checks for times to make sure we are disembarking in Purgonorgo Isle. 
+Added support for items that can warp you to a different zone, like Cumulus Masque +1, Dimensional rings, warp ring, nation rings etc. Uses table [actions.lua]
 
 ### v0.8.1
-Added support for entering and exiting all Promyvion zones
+Added support for White Mage teleport magic and recall magic + warping. Uses table [actions.lua] + Added functionality that deals with using the correct loading screens when using Escape.
 
 ### v0.8
-Added support for items that can warp you to a different zone, like Cumulus Masque +1, Dimensional rings, warp ring, nation rings etc. Uses table [teleportitems.lua]
-
-### v0.7.2
-Added support for White Mage teleport magic and recall magic.
-
-### v0.7.1
-Added support for entering Pso'Xja through Iron Grates in Beaucedine Glacier and the Shrouded Maw BCNM arena.
-
-### v0.7
 Added support and table for teleporting by using the Survival Guides. The table is [guides.lua]
 
-### v0.6.6
-Added support for Entering and leaving the Heaven's Tower in Windurst Walls
-
-### v0.6.5
-Added support for Entering and leaving Apollyon from Al'Taieu
-
-### v0.6.4
-Added support for all Chocobo Circuit entry points and exits
-
-### v0.6.3
-Added support for Domenic (Lower Jeuno, Tenshodo HQ) special teleports to certain BCNM locations + support for entering Odyssey
-
-### v0.6.2
-Added support for entering and exiting Omen 
-
-### v0.6.1
-Added support for entering/leaving Chateau d'oraguile.
+### v0.7
+Added support for entering/leaving Chateau d'oraguile / Heaven's Tower. Omen entering/leaving. Ambuscade entering/leaving. Chocobo Circuit entering/leaving. Odyssey entering/leaving. 
 
 ### v0.6
-Added support for all airship routes to and from Jeuno, the ferry between Selbina/Mhaura and the ferry between Whitegate and Nashmau
-
-### v0.5.3
-Added support for entering and exiting Ambuscade both through the Tome and auto-enter. Also added correctly handling zoning in and out of Whitegate through the Ironbound Gates. Lastly, made sure Mog House is correctly initialized on log in. 
-
-### v0.5.2
-Added support for entering the past (Crystal War era) through Cavernous Maws, teleporting to campaign areas through Campaign Arbiters, and returning from the Allied Tags NPCs (uses [cawarps.lua]).
-
-### v0.5.1
-Added support for going to and returning from the Mog Garden (including using Mog Dinghy in city ports)
+Crystal War era maws + campaign arbiters. Added support for all airship routes to and from Jeuno, the ferry between Selbina/Mhaura and the ferry between Whitegate and Nashmau
 
 ### v0.5
-Added support for entering Mog Houses, leaving Mog Houses (including "Choose an Area to exit to" and changing floors)
-
-### v0.4.1
-Added support for entering and returning from Escha - Zi'tah, Escha - Ru'Aun and Reisenjima. 
+Added support for entering Mog Houses, leaving Mog Houses (including "Choose an Area to exit to" and changing floors) + Mog Garden + Escha zones + Reisenjima
 
 ### v0.4
-Added support for using Cavernous Maws to travel to Abyssea areas (uses [abyssea.lua]). 
-
-### v0.3.1
-Added support for Adoulinian Waypoints (uses [waypoints.lua])
+Added support for using Cavernous Maws to travel to Abyssea areas (uses [abyssea.lua]). Added support for Adoulinian Waypoints (uses [waypoints.lua])
 
 ### v0.3
 Added support for the Runic Portal in Aht Urghan Whitegate (and returning to it) + recognizing when on Assault missions
