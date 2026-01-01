@@ -133,7 +133,7 @@ windower.register_event('addon command', function(command, ...)
 			chat(007, ':: [ TOURIST ] :: Static Image mode on')
 		end
 		settings.static = static
-		settings:save('all')
+		settings:save(player_name)
 	-- [CHANGE SIZE] ----------------------------------------------->
 	elseif command == 'small' then
 		if small then
@@ -205,7 +205,7 @@ windower.register_event('outgoing chunk', function(id, data)
 		if menu_id == 8700 and menu_option == 1 then
 			player_homepoint = CurZone
 			settings.homepoint = player_homepoint
-			settings:save('all')
+			settings:save(player_name)
 		end
 
 	-- [BASED ON NPC NAME] ----------------------------------------------------------------------------------------------+++
@@ -434,7 +434,7 @@ windower.register_event('outgoing chunk', function(id, data)
 		if save_retrace then
 			wnation = windower.ffxi.get_info().zone
 			settings.war_nation = wnation
-			settings:save('all')
+			settings:save(player_name)
 			save_retrace = false
 		end
 	-- prevent loading screen when logging out (0x0E7)
@@ -507,7 +507,7 @@ windower.register_event('incoming chunk', function(id, data)
 		-- if this is a newly set homepoint, update it in settings
 		if player_homepoint ~= settings.homepoint then
 			settings.homepoint = player_homepoint
-			settings:save('all')
+			settings:save(player_name)
 		end
 	-- [END OF INCOMING CHUNKS] ------------------------------------------------------------------>
 	end
@@ -578,7 +578,7 @@ function SetSize()
 		img_path = windower.addon_path .. 'data/large/'
 		settings.small = false
 	end
-	settings:save('all')
+	settings:save(player_name)
 end
 
 -- [LOOKUP FUNCTIONS] ---------------------------------------------------------------------------->
