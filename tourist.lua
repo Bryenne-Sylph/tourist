@@ -5,7 +5,7 @@
 -- Windower Add On Mandatory fields
 _addon.name = 'Tourist'
 _addon.author = 'Bryenne'
-_addon.version = '1.0'
+_addon.version = '1.1'
 _addon.commands = {'tourist'}
 -- windower library imports
 packets = require('packets')	-- to be able to receive data from the game
@@ -210,21 +210,8 @@ windower.register_event('outgoing chunk', function(id, data)
 
 	-- [BASED ON NPC NAME] ----------------------------------------------------------------------------------------------+++
 	
-		-- replace NPC names with Campaign Arbiter (if the NPC is a campaign arbiter)
-		if (npc_name:find("c.a.") or npc_name:find("r.k.") or npc_name:find("c.c.")) then
-			npc_name = 'campaign arbiter'
-			-- skip looking for destinations if we are just returning to the city
-			if menu_id == 457 then
-				zone_id = wnation
-				return
-			end
-		-- replace NPC names with Abyssea NPC if this is a "warp-to-maw" NPC	
-		elseif awnpcs:find(npc_name) then
-			npc_name = 'abyssea npc'
-		-- replace NPC names with Unity NPC if this is a "warp-to-wanted-area" NPC	
-		elseif uwnpcs:find(npc_name) then
-			npc_name = 'unity npc'
-		end
+		-- Do NPC Name checks
+		npc_name = CheckNPC(npc_name)
 
 		-- [NPC LOOKUP TABLE] --------------------------------------+		
 		if npcs[npc_name] and not lastfound then
@@ -408,6 +395,9 @@ windower.register_event('outgoing chunk', function(id, data)
 					else
 						zone_id = 220
 					end
+				-- [Outpost NPCs Repatriation]
+				elseif menu_id == 32689 then
+					Repatriation()
 				end
 				-- [AIRSHIP DISEMBARKING] ----------------------------------+
 				if menu_id == 10 or menu_id == 100 or menu_id == 702 then
@@ -637,6 +627,34 @@ function Repatriation()
 	end
 	lastfound = true
 end
+
+function CheckNPC(npc)
+	npc_name = npc
+	local suffix = npc_name:sub(-4)
+	-- Abyssea Warp NPCs
+	if awnpcs:find(name) then
+		npc_name = 'abyssea npc'
+	-- Unity NPC
+	elseif uwnpcs:find(npc_name) then
+		npc_name = 'unity npc'
+	elseif suffix == 'c.a.' or suffix == 'r.k.' or suffix == 'c.c.' or suffix == 'l.c.' then
+		if res.zones[windower.ffxi.get_info().zone].en:endswith('[S]') then
+			npc_name = 'campaign arbiter'
+		end
+		-- skip looking for destinations if we are just returning to the city
+		if menu_id == 457 then
+			if wnation ~= 0 then
+				zone_id = wnation
+			else
+				save_retrace = true
+				zone_id = 996
+			end
+			return npc_name
+		end
+	end
+	return npc_name
+end
+
 -- [MOG HOUSES] ----------------------------------------------------+
 function get_mog_exit()
 	mog_house = false

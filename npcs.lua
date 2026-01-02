@@ -64,6 +64,27 @@ return {
 		[254] = {zone=106},
 		[255] = {zone=126} -- Abyssea - Empyreal Paradox > Qufim Island
 	},
+	['conrad'] = {
+		[5] = {zone=100}, -- West Ronfaure
+		[6] = {zone=103}, -- Valkurm Dunes
+		[7] = {zone=104}, -- Jugner Forest
+		[8] = {zone=106}, -- North Gustaberg
+		[9] = {zone=109}, -- Pashhow Marshlands
+		[10] = {zone=115}, -- West Sarutabaruta
+		[11] = {zone=118}, -- Buburimu Peninsula
+		[12] = {zone=119}, -- Meriphataud Mountains
+		[13] = {zone=111}, -- Beaucedine Glacier
+		[14] = {zone=112}, -- Xarcabard
+		[15] = {zone=126}, -- Qufim Island
+		[16] = {zone=121}, -- The Sanctuary of Zi'Tah
+		[17] = {zone=114}, -- Eastern Altepa Desert
+		[18] = {zone=113}, -- Cape Teriggan
+		[19] = {zone=123}, -- Yuhtunga Jungle
+		[20] = {zone=124}, -- Yhoator Jungle
+		[21] = {zone=130}, -- Ru'Aun Gardens?!
+		[22] = {zone=11}, -- Oldton Movalpolos
+		[23] = {zone=24}, -- Lufaise Meadows
+	},
 	['explorer moogle'] = {
 		[1] = {zone=231}, -- San d'Oria
 		[2] = {zone=234}, -- Bastok
@@ -83,6 +104,27 @@ return {
 	},
 	['iron grate'] = {
 		[1] = {zone=9} -- Pso'Xja
+	},
+	['jeanvirgaud'] = {
+		[5] = {zone=100}, -- West Ronfaure
+		[6] = {zone=103}, -- Valkurm Dunes
+		[7] = {zone=104}, -- Jugner Forest
+		[8] = {zone=106}, -- North Gustaberg
+		[9] = {zone=109}, -- Pashhow Marshlands
+		[10] = {zone=115}, -- West Sarutabaruta
+		[11] = {zone=118}, -- Buburimu Peninsula
+		[12] = {zone=119}, -- Meriphataud Mountains
+		[13] = {zone=111}, -- Beaucedine Glacier
+		[14] = {zone=112}, -- Xarcabard
+		[15] = {zone=126}, -- Qufim Island
+		[16] = {zone=121}, -- The Sanctuary of Zi'Tah
+		[17] = {zone=114}, -- Eastern Altepa Desert
+		[18] = {zone=113}, -- Cape Teriggan
+		[19] = {zone=123}, -- Yuhtunga Jungle
+		[20] = {zone=124}, -- Yhoator Jungle
+		[21] = {zone=130}, -- Ru'Aun Gardens?!
+		[22] = {zone=11}, -- Oldton Movalpolos
+		[23] = {zone=24}, -- Lufaise Meadows
 	},
 	['proto-waypoint'] = {
 		[4] = {zone=243 }, -- Jeuno
@@ -111,6 +153,27 @@ return {
 		[27] = {zone=11 }, -- Oldton
 		[28] = {zone=29 }, -- Riverne B01
 		[29] = {zone=162 } -- Zvahl Keep
+	},
+	['rottata'] = {
+		[5] = {zone=100}, -- West Ronfaure
+		[6] = {zone=103}, -- Valkurm Dunes
+		[7] = {zone=104}, -- Jugner Forest
+		[8] = {zone=106}, -- North Gustaberg
+		[9] = {zone=109}, -- Pashhow Marshlands
+		[10] = {zone=115}, -- West Sarutabaruta
+		[11] = {zone=118}, -- Buburimu Peninsula
+		[12] = {zone=119}, -- Meriphataud Mountains
+		[13] = {zone=111}, -- Beaucedine Glacier
+		[14] = {zone=112}, -- Xarcabard
+		[15] = {zone=126}, -- Qufim Island
+		[16] = {zone=121}, -- The Sanctuary of Zi'Tah
+		[17] = {zone=114}, -- Eastern Altepa Desert
+		[18] = {zone=113}, -- Cape Teriggan
+		[19] = {zone=123}, -- Yuhtunga Jungle
+		[20] = {zone=124}, -- Yhoator Jungle
+		[21] = {zone=130}, -- Ru'Aun Gardens?!
+		[22] = {zone=11}, -- Oldton Movalpolos
+		[23] = {zone=24}, -- Lufaise Meadows
 	},
 	['shihu-danhu'] = { -- bad teleporter student in Al Zahbi
 		[48] = {zone=991, sub="You're very brave"} -- We don't know where this idiot will take you

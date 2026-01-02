@@ -58,6 +58,13 @@ Known Issues:
 * Certain cutscenes might load a different zone, this is generally not supported
 * There is no way to check what your allegiance in the Crystal War era is (for retrace), Tourist will show a general Crystal War loading screen the first time, but save your allegiance after the first time Retrace is used. 
 
+### v1.1
+Fixed a bug where exiting Escha - Zi'tah would sometimes show 'Xarcabard [S]' screen.
+Added 'Repatriation' functionality for using an Outpost NPC to warp back to home nation. 
+Added the three Conquest Outpost Warp NPCs functionality (Jeanvirgaud (North San d'Oria), Conrad (Bastok Mines) and Rottata (Port Windurst))
+
+If you have v1.0 installed, you *ONLY* need to update 'tourist.lua' and 'npcs.lua'!
+
 ### v1.0
 Release to the public. Please report errors / missing loading screens!
 
