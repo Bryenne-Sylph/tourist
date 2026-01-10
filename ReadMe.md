@@ -63,6 +63,9 @@ Added "Lure of the Wildcat" NPC paid warp to Whitegate (Amutiyaal in South San d
 Added better error handling for NPC lookups, as a lot of cutscenes would create Tourist errors. 
 Bug fixes: Fixed a bug with accessing Dynamis Divergence - Jeuno not being recognized + added missing images. Fixed a bug with "Ernst" not being recognized as an Abyssea Warp NPC. 
 
+Files to update:
+'tourist.lua', 'dialogs.lua', 'npcs.lua' and new images 'data\large\297.png' + 'data\small\297.png'
+
 ### v1.1
 Fixed a bug where exiting Escha - Zi'tah would sometimes show 'Xarcabard [S]' screen.
 Added 'Repatriation' functionality for using an Outpost NPC to warp back to home nation. 
