@@ -2,17 +2,20 @@
     Copyright © 2025/2026, Bryenne - Sylph server [DragonGuard]
     All rights reserved.
 ]]
+
 -- Windower Add On Mandatory fields
 _addon.name = 'Tourist'
 _addon.author = 'Bryenne'
-_addon.version = '1.1'
+_addon.version = '1.2'
 _addon.commands = {'tourist'}
+
 -- windower library imports
 packets = require('packets')	-- to be able to receive data from the game
 res = require('resources')		-- to look up general resource names
 images = require('images')		-- to be able to use graphics
 config = require ('config')		-- to load and save settings
 texts = require ('texts')		-- to be able to print advanced texts
+
 -- Windower functions
 require('strings')
 require('lists')
@@ -29,7 +32,7 @@ guides = require('guides')
 actions = require('actions')
 vw = require('vw')
 unity = require('unity')
--- Initialization
+
 function init_tourist()
 	init = nil
 	logging_out = nil
@@ -43,20 +46,25 @@ function init_tourist()
 	player_homepoint = nil
 	save_retrace = false
 	chat = windower.add_to_chat
+
 	-- check if we are logged in or do nothing
 	w_info = windower.ffxi.get_info()
 	if not w_info.logged_in then return end
+	
 	-- check if the player has loaded yet or do nothing
 	player_id = windower.ffxi.get_player()
 	if not player_id then return end
-	-- Resolution math for centering images
+
+	-- Resolution settngs
 	windower_settings = windower.get_windower_settings()
 	posX = ((windower_settings.ui_x_res / 2)-512)
 	posY = ((windower_settings.ui_y_res / 2)-291)
+	
 	-- player initialization
 	player_nation =	(player_id['nation'])
 	player_name = (player_id['name'])
 	zone_id = (w_info.zone)
+	
 	-- determine if we are inside the mog house
 	if w_info.mog_house then
 		mog_house = true
@@ -64,6 +72,7 @@ function init_tourist()
 	else
 		mog_house = false
 	end
+	
 	-- add-on settngs 
 	defaults = {}
 	defaults.small = false
@@ -71,11 +80,11 @@ function init_tourist()
 	defaults.homepoint = 0
 	defaults.war_nation = 0
 	defaults.static_file = "nozone"
-	-- create/load settings
+
 	settings = config.load(defaults)
 	config.save(settings)
+	
 	-- default variables
-	dev = false
 	awnpcs = L{ "cyril", "ernst", "horst", "ivan", "kierron", "vincent", "willis" } -- Abyssea Warp NPCs
 	uwnpcs = L{ "urbiolaine", "igsli", "teldro-kesdrodo", "yonolala", "nunaarl bthtrogg" } -- Unity Warp NPCs
 	small = settings.small
@@ -184,7 +193,8 @@ windower.register_event('outgoing chunk', function(id, data)
 		-- look up where we are exiting if we are in a mog house
 		if mog_house then
 			mog_house = false
-			zone_id = windower.ffxi.get_info().zone
+			w_info = windower.ffxi.get_info()
+			zone_id = w_info.zone
 			get_mog_exit()
 		else
 			-- if not look up which zoneline we are crossing
@@ -263,6 +273,7 @@ windower.register_event('outgoing chunk', function(id, data)
 					lastfound = true
 				else
 					NotFound()
+					return
 				end
 			end
 		elseif npc_name == 'unity npc' then
@@ -273,10 +284,11 @@ windower.register_event('outgoing chunk', function(id, data)
 					lastfound = true
 				else
 					NotFound()
+					return
 				end
 			end
 		-- [SURVIVAL GUIDES] ---------------------------------------+
-		elseif npc_name:find("^survival guide") then
+		elseif npc_name:find("survival guide") then
 			local guide_id = local_packet._unknown1
 			-- if menu option wasn't cancelled
 			if menu_option ~= 0 then
@@ -444,11 +456,18 @@ windower.register_event('incoming chunk', function(id, data)
 			if (zone_id == 0 or zone_id == 998) then
 				mog_house = true
 			else
+				if (dev and zone_id < 900) then
+					chat(215, "Zone request to " ..res.zones[zone_id].en.. " (" ..zone_id.. ") at: " ..windower.ffxi.get_info().time)
+				end
 				mog_house = false
 			end
 		elseif (not zone_id or zone_id == 999) then
 			-- make zone_id the previous zone, if no new zone_id is set (we're being auto-ejected)
-			zone_id = PrevZone
+			if PrevZone then
+				zone_id = PrevZone
+			else	
+				zone_id = 999
+			end
 		end
 		PrevZone = windower.ffxi.get_info().zone
 		ShowUI()
@@ -462,6 +481,7 @@ windower.register_event('incoming chunk', function(id, data)
 				if act_data['Param'] ~= 28787 then
 					-- retrieve the spell ID from the FFXI packet data
 					local spell_id = act_data['Target 1 Action 1 Param']
+
 					zone_id = 999
 					-- warp / warp II
 					if (spell_id == 261 or spell_id == 262) then
@@ -487,6 +507,10 @@ windower.register_event('incoming chunk', function(id, data)
 						zone_id = actions[spell_id].zone
 					else
 						NotFound()
+					end
+					-- debug
+					if (dev and zone_id ~= 996 and zone_id ~=999) then
+						chat(007, "Teleporting to " ..res.zones[zone_id].en)
 					end
 				end
 			end
@@ -535,7 +559,6 @@ function Create_UI(new_id)
 end
 
 function ShowUI()
-
 		-- show image (and subtitle)
 		if not logging_out then
 			Create_UI(zone_id)
@@ -552,7 +575,6 @@ function ShowUI()
 				subtitle:show()
 			end
 		end
-		
 end
 
 function SetSize()
@@ -603,56 +625,6 @@ function Find_ZoneLine(id)
 	-- we did not find the homepoint in the database
 	NotFound()
 	return zone_id
-end
-
-function NotFound()
-	-- reset base variables to prevent any fuck ups
-	zone_id = 999
-	lastfound = false
-	destination = nil
-	CurZone = nil
-end
-
-function Repatriation()
-	-- repatriation
-	if player_nation == 0 then
-		-- Northern San d'Oria
-		zone_id = 231
-	elseif player_nation == 1 then
-		-- Bastok Mines
-		zone_id = 234
-	elseif player_nation == 2 then
-		-- Port Windurst
-		zone_id = 240
-	end
-	lastfound = true
-end
-
-function CheckNPC(npc)
-	npc_name = npc
-	local suffix = npc_name:sub(-4)
-	-- Abyssea Warp NPCs
-	if awnpcs:find(name) then
-		npc_name = 'abyssea npc'
-	-- Unity NPC
-	elseif uwnpcs:find(npc_name) then
-		npc_name = 'unity npc'
-	elseif suffix == 'c.a.' or suffix == 'r.k.' or suffix == 'c.c.' or suffix == 'l.c.' then
-		if res.zones[windower.ffxi.get_info().zone].en:endswith('[S]') then
-			npc_name = 'campaign arbiter'
-		end
-		-- skip looking for destinations if we are just returning to the city
-		if menu_id == 457 then
-			if wnation ~= 0 then
-				zone_id = wnation
-			else
-				save_retrace = true
-				zone_id = 996
-			end
-			return npc_name
-		end
-	end
-	return npc_name
 end
 
 -- [MOG HOUSES] ----------------------------------------------------+
@@ -757,6 +729,58 @@ function get_mog_exit()
 		end
 	end
 end
+
+function NotFound()
+	-- reset base variables to prevent any fuck ups
+	zone_id = 999
+	lastfound = false
+	destination = nil
+	subtitle = nil
+	CurZone = nil
+end
+
+function Repatriation()
+	-- repatriation
+	if player_nation == 0 then
+		-- Northern San d'Oria
+		zone_id = 231
+	elseif player_nation == 1 then
+		-- Bastok Mines
+		zone_id = 234
+	elseif player_nation == 2 then
+		-- Port Windurst
+		zone_id = 240
+	end
+	lastfound = true
+end
+
+function CheckNPC(npc)
+	npc_name = npc
+	local suffix = npc_name:sub(-4)
+	-- Abyssea Warp NPCs
+	if awnpcs:find(npc_name) then
+		npc_name = 'abyssea npc'
+	-- Unity NPC
+	elseif uwnpcs:find(npc_name) then
+		npc_name = 'unity npc'
+	elseif suffix == 'c.a.' or suffix == 'r.k.' or suffix == 'c.c.' or suffix == 'l.c.' then
+		if res.zones[windower.ffxi.get_info().zone].en:endswith('[S]') then
+			npc_name = 'campaign arbiter'
+		end
+		-- skip looking for destinations if we are just returning to the city
+		if menu_id == 457 then
+			if wnation ~= 0 then
+				zone_id = wnation
+			else
+				save_retrace = true
+				zone_id = 996
+			end
+			return npc_name
+		end
+	end
+	return npc_name
+end
+
 -- [IMAGE FUNCTIONS FOR FADING] ------------------------------------------------------------------>
 function refresh_image()
 	if img_fading then

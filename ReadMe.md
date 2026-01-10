@@ -1,5 +1,5 @@
 # TOURIST
-#### v1.1
+#### v1.2
 
 ### Written by Bryenne[Sylph]
 
@@ -57,6 +57,11 @@ Known Issues:
 * Sometimes Warp activates so fast Tourist misses it
 * Certain cutscenes might load a different zone, this is generally not supported
 * There is no way to check what your allegiance in the Crystal War era is (for retrace), Tourist will show a general Crystal War loading screen the first time, but save your allegiance after the first time Retrace is used. 
+
+### v1.2
+Added "Lure of the Wildcat" NPC paid warp to Whitegate (Amutiyaal in South San d'Oria, Alib-Mufalib in Port Bastok, Ibwam in Windurst Woods, and Ajithaam in Upper Jeuno). 
+Added better error handling for NPC lookups, as a lot of cutscenes would create Tourist errors. 
+Bug fixes: Fixed a bug with accessing Dynamis Divergence - Jeuno not being recognized + added missing images. Fixed a bug with "Ernst" not being recognized as an Abyssea Warp NPC. 
 
 ### v1.1
 Fixed a bug where exiting Escha - Zi'tah would sometimes show 'Xarcabard [S]' screen.

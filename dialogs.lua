@@ -348,6 +348,9 @@ return {
 		[378] = {
 			[249] = {zone=183, sub="Ambuscade"} -- Mhaura > Maquette Abdhaljs-LegionA, Entering Ambuscade (Auto-Accept)
 		},
+		[379] = {
+			[236] = {zone=50} -- Lure of the Wildcat 300 gil warp to Whitegate (Alib-Mufalib)
+		},
 		[408] = {
 			[72] = {zone=74} -- Alzadaal > Arrapago Remnants
 		},
@@ -408,8 +411,14 @@ return {
 		[700] = { 
 			[232] = {zone=223, dest=246} -- Port San d'Oria > Airship, boarding Airship to Jeuno
 		},
+		[794] = {
+			[241] = {zone=50} -- Lure of the Wildcat 300 gil warp to Whitegate (Ibwam)
+		},
 		[795] = {
 			[241] = {zone=70} -- Windurst Woods > Chocobo Circuit
+		},
+		[881] = {
+			[230] = {zone=50} -- Lure of the Wildcat 300 gil warp to Whitegate (Amutiyaal)
 		},
 		[882] = {
 			[230] = {zone=70} -- Southern San d'Oria > Chocobo Circuit
@@ -500,10 +509,10 @@ return {
 			[246] = {zone=226, dest=250} -- Port Jeuno > Airship, boarding Airship to Kazham
 		},
 		[10038] = {
-			[248] = {zone=998} -- Selbina > Walk of Echoes (Maiden's HTBCNM) - auto-transport
+			[248] = {zone=997} -- Selbina > Walk of Echoes (Maiden's HTBCNM) - auto-transport
 		},
 		[10041] = {
-			[248] = {zone=998} -- Selbina > Walk of Echoes (Maiden's HTBCNM) - manual
+			[248] = {zone=997} -- Selbina > Walk of Echoes (Maiden's HTBCNM) - manual
 		},
 		[10115] = { -- Domenic
 			[245] = { -- Lower Jeuno (Neptune's Spire)
@@ -516,5 +525,14 @@ return {
 		},
 		[10176] = {
 			[243] = {zone=188} -- Ru'lude Gardens > Dynamis - Jeuno
+		},
+		[10177] = {
+			[244] = {zone=50} -- Lure of the Wildcat 300 gil warp to Whitegate (Ajithaam)
+		},
+		[10276] = {
+			[243] = {zone=297} -- Ru'lude Gardens > Dynamis - Jeuno [D] (Regular)
+		},
+		[10299] = {
+			[243] = {zone=297} -- Ru'Lude Gardens > Dynamis - Jeuno [D] (Shared)
 		}
 }
