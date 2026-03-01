@@ -124,7 +124,10 @@ return {
 		[20] = {zone=124}, -- Yhoator Jungle
 		[21] = {zone=130}, -- Ru'Aun Gardens?!
 		[22] = {zone=11}, -- Oldton Movalpolos
-		[23] = {zone=24}, -- Lufaise Meadows
+		[23] = {zone=24} -- Lufaise Meadows
+	},
+	['pacomart'] = {
+		[248] = {zone=252} -- Selbina > Norg (RoV storyline)
 	},
 	['proto-waypoint'] = {
 		[4] = {zone=243 }, -- Jeuno
@@ -181,5 +184,8 @@ return {
 	['swirling vortex'] = {
 		[25] = {zone=126}, -- Misareaux Coast > Qufim Island
 		[126] = {zone=25} -- Qufim Island > Misareaux Coast
+	},
+	['tonasav'] = {
+		[249] = {zone=252} -- Mhaura > Norg (RoV storyline)
 	}
 }

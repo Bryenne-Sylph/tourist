@@ -140,7 +140,10 @@ return {
 			[126] = {zone=288} -- Qufim Island > Escha - Zi'tah
 		},
 		[68] = {
-			[267] = {zone=133} -- Kamihr Drifts > Ra'Kaznar U2 (Sortie)
+			[267] = {zone=133} -- Kamihr Drifts > Ra'Kaznar U2 (Sortie as party lead or solo)
+		},
+		[69] = {
+			[267] = {zone=133} -- Kamihr Drifts > Ra'Kaznar U2 (Sortie as party member)
 		},
 		[71] = {
 			[236] = {zone=224} -- Port Bastok > Airship, boarding Airship to Jeuno
@@ -279,8 +282,14 @@ return {
 		[172] = { 
 			[247] = {zone=298} -- Rabao > Walk of Echoes, Odyssey
 		},
+		[173] = { 
+			[247] = {zone=298} -- Rabao > Sheol Gaol
+		},
 		[176] = { 
 			[247] = {zone=298} -- Rabao > Walk of Echoes, Odyssey auto-transport
+		},
+		[179] = { 
+			[248] = {zone=252} -- Selbina > Norg (Rhapsodies mission)
 		},
 		[184] = { 
 			[35] = {zone=36} -- Garden of Ru'Hmet -> Empyreal Paradox 
@@ -350,6 +359,9 @@ return {
 		},
 		[379] = {
 			[236] = {zone=50} -- Lure of the Wildcat 300 gil warp to Whitegate (Alib-Mufalib)
+		},
+		[405] = {
+			[72] = {zone=77} -- Waking the Collossus
 		},
 		[408] = {
 			[72] = {zone=74} -- Alzadaal > Arrapago Remnants
@@ -460,10 +472,13 @@ return {
 		[5500] = {
 			[263] = {zone=264, sub="Skirmish Dungeon"}, -- Yorcia Weald > Yorcia Weald [U] (Skirmish - Augural Conveyor)
 			[270] = {zone=271, sub="Skirmish Dungeon"}, -- Cirdas Caverns > Cirdas Caverns [U] (Skirmish - Augural Conveyor)
-			[274] = {zone=275, sub="Skirmish Dungeon"}, -- Outer Ra'Kaznar > Outer Ra'Kaznar [U1] (Skirmish - Augural Conveyor)
+			[274] = {zone=275, sub="Skirmish Dungeon"} -- Outer Ra'Kaznar > Outer Ra'Kaznar [U1] (Skirmish - Augural Conveyor)
 		},
 		[5502] = {
-			[105] = {zone=129, sub="Meeble Burrows Mission"}, -- Batallia Downs > Ghoyu's Reverie (Meeble Burrows B)
+			[105] = {zone=129, sub="Meeble Burrows Mission"} -- Batallia Downs > Ghoyu's Reverie (Meeble Burrows B)
+		},
+		[5504] = {
+			[265] = {zone=271, sub="Delve Expedition"} -- Morimar Basalt Fields > Cirdas Caverns [U] (Delve)
 		},
 		[5513] = {
 			[258] = {zone=259, sub="Skirmish Dungeon"} -- Rala Waterways > Rala Waterways [U] (Skirmish - Augural Conveyor)
@@ -485,6 +500,7 @@ return {
 		},
 		[10000] = { 
 			[250] = {zone=226, dest=246}, -- Kazham > Airship, boarding Airship to Jeuno
+			[271] = {zone=265}, -- Cirdas [U] Delve > Morimar Basalt Fields - auto exit
 			[292] = {zone=291}, -- Reisenjima Henge > Reisenjima (exiting Omen - Voracious Resurgance)
 			[298] = {zone=248} -- Walk of Echoes > Selbina (exiting HTBCNM Conflux)
 		},

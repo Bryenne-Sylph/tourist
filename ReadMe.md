@@ -58,6 +58,14 @@ Known Issues:
 * Certain cutscenes might load a different zone, this is generally not supported
 * There is no way to check what your allegiance in the Crystal War era is (for retrace), Tourist will show a general Crystal War loading screen the first time, but save your allegiance after the first time Retrace is used. 
 
+### v1.3
+Bug fixes: 
+fixed a bug where entering Sheol: gaol was not recognized as entering Odyssey
+fixed a bug where teleporting back to your "home" city in Crystal Era zones via a Campaign Arbiter would sometimes show Xarcabard [S] instead of the city. 
+fixed a bug with teleport-spells where a nearby player teleporting would change your zone (lol!)
+fixed a bug where entering Sortie would not be properly recognized if you are not the party leader
+added support for the "Waking the Colossus" battlefield in Nyzul
+
 ### v1.2
 Added "Lure of the Wildcat" NPC paid warp to Whitegate (Amutiyaal in South San d'Oria, Alib-Mufalib in Port Bastok, Ibwam in Windurst Woods, and Ajithaam in Upper Jeuno). 
 Added better error handling for NPC lookups, as a lot of cutscenes would create Tourist errors. 
