@@ -1,5 +1,5 @@
 # TOURIST
-#### v1.2
+#### v1.4
 
 ### Written by Bryenne[Sylph]
 
