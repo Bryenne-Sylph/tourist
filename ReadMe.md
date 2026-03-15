@@ -1,5 +1,5 @@
 # TOURIST
-#### v1.3
+#### v1.2
 
 ### Written by Bryenne[Sylph]
 
@@ -49,7 +49,6 @@ This will show the image for zone 230 (Southern San d'Oria). Leave the number bl
 TODO:
 * Diorama zones (ballista/brenner)
 * TVR Final Zones (Silver Knife / Gwora corridor / Throne Room)
-* Feretory
 * Vagary / Delve
 * Ruhotz Silver Mines / Everbloom Hollow
 
@@ -58,13 +57,21 @@ Known Issues:
 * Certain cutscenes might load a different zone, this is generally not supported
 * There is no way to check what your allegiance in the Crystal War era is (for retrace), Tourist will show a general Crystal War loading screen the first time, but save your allegiance after the first time Retrace is used. 
 
+### v1.4
+Fixed a bug where "Scroll of Instant Warp" was not recognized as a warp item
+Fixed a bug where teleporting to Reisenjima would show the wrong screen if you enter from the Crag of Mea
+Added support for Feretory - entering through all cities and Pashhow
+
+Files to update:
+'tourist.lua', 'dialogs.lua', 'npcs.lua' and new images 'data\large\285.png' + 'data\small\285.png'
+
 ### v1.3
 Bug fixes: 
-* fixed a bug where entering Sheol: gaol was not recognized as entering Odyssey
-* fixed a bug where teleporting back to your "home" city in Crystal Era zones via a Campaign Arbiter would sometimes show Xarcabard [S] instead of the city.
-* fixed a bug with teleport-spells where a nearby player teleporting would change your zone (lol!)
-* fixed a bug where entering Sortie would not be properly recognized if you are not the party leader
-* added support for the "Waking the Colossus" battlefield in Nyzul
+fixed a bug where entering Sheol: gaol was not recognized as entering Odyssey
+fixed a bug where teleporting back to your "home" city in Crystal Era zones via a Campaign Arbiter would sometimes show Xarcabard [S] instead of the city. 
+fixed a bug with teleport-spells where a nearby player teleporting would change your zone (lol!)
+fixed a bug where entering Sortie would not be properly recognized if you are not the party leader
+added support for the "Waking the Colossus" battlefield in Nyzul
 
 ### v1.2
 Added "Lure of the Wildcat" NPC paid warp to Whitegate (Amutiyaal in South San d'Oria, Alib-Mufalib in Port Bastok, Ibwam in Windurst Woods, and Ajithaam in Upper Jeuno). 

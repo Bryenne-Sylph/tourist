@@ -6,7 +6,7 @@
 -- Windower Add On Mandatory fields
 _addon.name = 'Tourist'
 _addon.author = 'Bryenne'
-_addon.version = '1.1D'
+_addon.version = '1.4'
 _addon.commands = {'tourist'}
 
 -- windower library imports
@@ -140,39 +140,6 @@ windower.register_event('addon command', function(command, ...)
 			loading_img = images.new(img_def)
 			loading_img:show()
 		end
-	elseif command == 'cs' then
-		local checksum = true
-		local checkfile = 1
-		local img_pathL = windower.addon_path .. 'data/large/'
-		local img_pathS = windower.addon_path .. 'data/small/'
-		local printstring = ""
-		local color = 7
-		local missing = 0
-		local files = L{}
-		while checksum == true do
-			file_to_check = (img_pathL .. checkfile .. '.png')
-			if windower.file_exists(file_to_check) then
-				color = 7
-				printstring = ("File (Large): " ..file_to_check.. " OK. Small Version: ")
-				file_to_check = (img_pathS .. checkfile .. '.png')
-				if not windower.file_exists(file_to_check) then
-					printstring = printstring .. " MISSING!!"
-					color = 107
-					missing = missing + 1
-				else
-					printstring = printstring .. " OK."
-				end
-			else
-				printstring = "(" ..checkfile.. "): No image."
-				color = 1
-				if checkfile >= 300 then
-					checksum = false
-				end
-			end
-			chat(color, (printstring))
-			checkfile = checkfile + 1
-		end
-		chat(008, "Number of missing files: "..missing)
 	elseif command == 'static' then
 		if static then 
 			static = false
@@ -183,14 +150,6 @@ windower.register_event('addon command', function(command, ...)
 		end
 		settings.static = static
 		settings:save(player_name)
-	elseif command == 'dev' then
-		if dev then
-			dev = false
-			chat(007, ':: [ TOURIST ] :: Development mode off')
-		else
-			dev = true
-			chat(007, ':: [ TOURIST ] :: Development mode on')
-		end
 	-- [CHANGE SIZE] ----------------------------------------------->
 	elseif command == 'small' then
 		if small then
@@ -222,17 +181,10 @@ windower.register_event('outgoing chunk', function(id, data)
 		-- Check table to see if this item is a teleporting item
 		if actions[current_item] then
 			zone_id = actions[current_item].zone
-			if dev then
-				if (zone_id ~= 994 and not lastfound) then
-					chat(107,("Using item: " .. (res.items[current_item].en) .. " to go to zone: " .. (res.zones[zone_id].en) .. " (" ..zone_id.. ")."))
-				elseif (zone_id == 994 and not lastfound) then
-					chat(107,("Using item: " .. (res.items[current_item].en) .. " to go to zone: Purgonorgo Isle - Bibiki Bay (4)"))
-				end
-			end
 			lastfound = true
 		-- Check if this item is a Warp item
-		elseif (current_item == 28540 or current_item == 17040 or current_item == 17587 or current_item == 17588) then
-			-- 28540: Warp Ring, 17040: Warp Cudgel, 17587: Treat Staff II, 17588: Trick Staff II
+		elseif (current_item == 28540 or current_item == 17040 or current_item == 17587 or current_item == 17588 or current_item == 4181) then
+			-- 28540: Warp Ring, 17040: Warp Cudgel, 17587: Treat Staff II, 17588: Trick Staff II, 4181: scroll of instant warp
 			zone_id = player_homepoint
 		-- Check if this item is a Repatriation item
 		elseif (current_item == 16118 or current_item == 16119) then
@@ -265,11 +217,6 @@ windower.register_event('outgoing chunk', function(id, data)
 		local unknown1 = (local_packet['_unknown1'])
 		local npc_name = string.lower(windower.ffxi.get_mob_by_index(target_index).name)
 		local CurZone = windower.ffxi.get_info().zone
-		
-		if dev == true then
-			print (local_packet)
-			print ("Zone: ",(CurZone), ", LF:",(lastfound),", NPC:",(npc_name),", menu ID: ",(menu_id), ", menu option: ",(menu_option)," | Player nation: ",(player_nation),", War Nation:",(wnation))
-		end
 		
 		-- check if player is changing his homepoint
 		if menu_id == 8700 and menu_option == 1 then
@@ -318,15 +265,6 @@ windower.register_event('outgoing chunk', function(id, data)
 			else
 				subtitle = Get_Subtitle_Settings(FindZone.sub)
 			end
-			-- debug
-			if dev then
-				chat (107, "Found in NPCs table! NPC = " .. npc_name .. " with current zone being: " .. CurZone .. " (" .. res.zones[CurZone].en .. ") and going to: " ..zone_id.. " (" .. res.zones[zone_id].en .. ") ")
-				if destination then
-					chat (107, "The final destination is: " ..destination.. " (" ..res.zones[destination].en.. ")")
-				else
-					chat (107, "There is no further destination")
-				end
-			end
 		-- [HOMEPOINTS] --------------------------------------------+
 		elseif npc_name:find("^home point") then
 			if menu_option == 2 then
@@ -340,9 +278,6 @@ windower.register_event('outgoing chunk', function(id, data)
 				if vw[unknown1] then
 					zone_id = vw[unknown1].zone
 					lastfound = true
-					if dev then
-						chat (107, "Found! Going to: " ..zone_id.. " (" .. res.zones[zone_id].en .. ") using a Voidwatch NPC (" ..npc_name.. ")")
-					end
 				else
 					NotFound()
 					return
@@ -354,9 +289,6 @@ windower.register_event('outgoing chunk', function(id, data)
 				if unity[menu_option] then
 					zone_id = unity[menu_option].zone
 					lastfound = true
-					if dev then
-						chat (107, "Found! Going to: " ..zone_id.. " (" .. res.zones[zone_id].en .. ") using a Unity NPC!")
-					end
 				else
 					NotFound()
 					return
@@ -371,9 +303,6 @@ windower.register_event('outgoing chunk', function(id, data)
 				if guides[guide_id] then
 					zone_id = guides[guide_id].zone
 					lastfound = true
-					if dev and lastfound then
-						chat (107, "Found! Going to: " ..zone_id.. " (" .. res.zones[zone_id].en .. ") using a Survival Guide...")
-					end
 				else
 					NotFound()
 					return
@@ -388,9 +317,6 @@ windower.register_event('outgoing chunk', function(id, data)
 					zone_id = waypoints[menu_option].zone
 					if zone_id ~= CurZone then
 						lastfound = true
-						if dev and lastfound then
-							chat (107, "Found! Going to: " ..zone_id.. " (" .. res.zones[zone_id].en .. ") using a Waypoint...")
-						end
 					end
 				else
 					NotFound()
@@ -458,15 +384,6 @@ windower.register_event('outgoing chunk', function(id, data)
 					else
 						subtitle = Get_Subtitle_Settings(FindZone.sub)
 					end
-					-- debug information				
-					if dev then
-						chat (107, "Found in dialogs table! Menu ID = " .. menu_id .. " with current zone being: " .. CurZone .. " (" .. res.zones[CurZone].en .. ") and going to: " ..zone_id.. " (" .. res.zones[zone_id].en .. ") ")
-						if destination then
-							chat (107, "The final destination is: " ..destination.. " (" ..res.zones[destination].en.. ")")
-						else
-							chat (107, "There is no further destination")
-						end
-					end
 					lastfound = true
 				else
 					NotFound()
@@ -490,7 +407,6 @@ windower.register_event('outgoing chunk', function(id, data)
 					end
 				-- [FERRY LEAVING MHAURA] ----------------------------------+
 				elseif CurZone == 249 and menu_id == 200 then
-					print "leaving mhaura!!"
 					local time = windower.ffxi.get_info().time
 					-- both the Ferry to Selbina and the Ferry to Al Zahbi use the same dialog, so we have to check the time
 					if  (time > 240 and time < 290) or (time > 720 and time < 770) or (time > 1200 and time < 1250) then
@@ -545,14 +461,8 @@ windower.register_event('incoming chunk', function(id, data)
 		-- determine if we are zoning into the mog house or not
 		if (zone_id and zone_id ~= 999) then
 			if (zone_id == 0 or zone_id == 998) then
-				if dev then
-					chat(215, "Zone request to Mog House")
-				end
 				mog_house = true
 			else
-				if (dev and zone_id < 900) then
-					chat(215, "Zone request to " ..res.zones[zone_id].en.. " (" ..zone_id.. ") at: " ..windower.ffxi.get_info().time)
-				end
 				mog_house = false
 			end
 		elseif (not zone_id or zone_id == 999) then
@@ -695,14 +605,8 @@ function Find_Zone(hp_id)
 		zone_id = homepoints[hp_id].zone
 		if zone_id ~= windower.ffxi.get_info().zone then
 			lastfound = true
-			if dev and lastfound then
-				chat (107, "Found! Going to: " ..zone_id.. " (" .. res.zones[zone_id].en .. ") using a Homepoint...")
-			end
 		else
 			lastfound = false
-			if dev and not lastfound then
-				chat (107, "Found! Teleporting within the same zone using a Homepoint...")
-			end
 		end
 		return zone_id
 	else
@@ -880,9 +784,7 @@ function CheckNPC(npc, menu_id)
 			return npc_name
 		end
 	end
-	if dev then
-		print (npc_name)
-	end
+
 	return npc_name
 end
 
