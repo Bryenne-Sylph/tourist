@@ -58,10 +58,13 @@ Known Issues:
 * There is no way to check what your allegiance in the Crystal War era is (for retrace), Tourist will show a general Crystal War loading screen the first time, but save your allegiance after the first time Retrace is used. 
 
 ### v1.4
-Fixed a bug where "Scroll of Instant Warp" was not recognized as a warp item
-Fixed a bug where teleporting to Reisenjima would show the wrong screen if you enter from the Crag of Mea
-Added support for Feretory - entering through all cities and Pashhow
-
+Bug fixes:<br>
+Fixed a bug where "Scroll of Instant Warp" was not recognized as a warp item<br>
+Fixed a bug where teleporting to Reisenjima would show the wrong screen if you enter from the Crag of Mea<br>
+<br>
+New Feature(s):<br>
+Added support for Feretory - entering through all cities and Pashhow<br>
+<br>
 Files to update:
 'tourist.lua', 'dialogs.lua', 'npcs.lua' and new images 'data\large\285.png' + 'data\small\285.png'
 
