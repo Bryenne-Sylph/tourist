@@ -126,6 +126,12 @@ return {
 		[22] = {zone=11}, -- Oldton Movalpolos
 		[23] = {zone=24} -- Lufaise Meadows
 	},
+	['odyssean passage'] = {
+		[109] = {zone=285}, -- Pashhow Marshlands > Feretory
+		[231] = {zone=285}, -- North San d'Oria > Feretory
+		[236] = {zone=285}, -- Port Bastok > Feretory
+		[240] = {zone=285} -- Port Windurst > Feretory
+	},
 	['pacomart'] = {
 		[248] = {zone=252} -- Selbina > Norg (RoV storyline)
 	},

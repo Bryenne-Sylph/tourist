@@ -443,6 +443,10 @@ return {
 			[108] = { -- Crag of Dem Dimensional Portal
 				[1] = {zone=33}, -- > Al'taieu
 				[2] = {zone=291} -- > Reisenjima
+			},
+			[117] = { -- Crag of Dem Dimensional Portal
+				[1] = {zone=33}, -- > Al'taieu
+				[2] = {zone=291} -- > Reisenjima
 			}
 		},
 		[1004] = {
