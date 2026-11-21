@@ -43,7 +43,7 @@ to change:
 This turns fading in images [on] if it is [off], or [off] if it is [on].
 			  
 ### sd 
-Toggle [on/off] Determines whether or not the Loading screen for the correct zone is displayed when being teleported by Shihu-Danhu, the crazy teleport mage in El Zahbi. When this is on, the destination will not be shown in the loading screen.
+Toggle [on/off] Determines whether or not the Loading screen for the correct zone is displayed when being teleported by Shihu-Danhu, the crazy teleport mage in Al Zahbi. When this is on, the destination will not be shown in the loading screen.
 ```
 For Example:
 //tourist sd
