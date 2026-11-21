@@ -1,7 +1,7 @@
 # TOURIST
-#### v1.4
+#### v1.5 (Release)
 
-### Written by Bryenne[Sylph]
+### Written by Bryenne[Sylph], with huge improvement to zoning-destination lookup by Kenshi. 
 
 This addon creates a loading screen every time Final Fantasy XI would go to a black screen to load a new area. Since Final Fantasy XI does not have one single 'zoning' method, it is not guaranteed the loading image works correctly in all instances. Please report missing loading screen moments so we can add them (DM me on the windower discord is best or email me at mrrudix@gmail.com).
 
@@ -9,14 +9,14 @@ This addon creates a loading screen every time Final Fantasy XI would go to a bl
 
 Download the entirity of this repository to: ```[your-windower-path]/addons/tourist```
 Add this line to your init.txt: ```lua load tourist```
-Or load it manually in-game by typing: ```lua load tourist```
+Or load it manually in-game by typing: ```//lua load tourist```
 
 ## COMMANDS
 
 Use //tourist to give these COMMANDS
 
 ### static
-Toggle [On/off] Determines whether Tourist uses a static loading image or zone-specific loading images. Default is OFF.\
+Toggle [On/off] Determines whether Tourist uses a static loading image or zone-specific loading images. Default is OFF.
 <br>
 to change:
 ```
@@ -33,6 +33,23 @@ to change:
 ```
 This turns using a high resolution images [on] if it is [off], or [off] if it is [on].
 			  
+### fadein
+Toggle [On/off] When turned on, the loading screen will fade in instead of simply appearing. Default is [off].
+<br>
+to change:
+```
+//tourist fadein
+```
+This turns fading in images [on] if it is [off], or [off] if it is [on].
+			  
+### sd 
+Toggle [on/off] Determines whether or not the Loading screen for the correct zone is displayed when being teleported by Shihu-Danhu, the crazy teleport mage in El Zahbi. When this is on, the destination will not be shown in the loading screen.
+```
+For Example:
+//tourist sd
+```
+This will show the image for the actual zone when [off], or use a special image keeping the destination a secret when it is [on]
+			  
 ### test
 Requires a numeric value as input and will show the loading screen of a specific zone...this is mostly to test graphics, or to confirm a loading screen exists for a certain zone. (Yet it is possible we missed one).
 ```
@@ -48,46 +65,61 @@ This will show the image for zone 230 (Southern San d'Oria). Leave the number bl
 
 TODO:
 * Diorama zones (ballista/brenner)
-* TVR Final Zones (Silver Knife / Gwora corridor / Throne Room)
 * Vagary / Delve
-* Ruhotz Silver Mines / Everbloom Hollow
+* Ruhotz Silver Mines 
 
 Known Issues:
 * Sometimes Warp activates so fast Tourist misses it
-* Certain cutscenes might load a different zone, this is generally not supported
-* There is no way to check what your allegiance in the Crystal War era is (for retrace), Tourist will show a general Crystal War loading screen the first time, but save your allegiance after the first time Retrace is used. 
+* Certain cutscenes might load a different zone, this is generally untested but should now load the correct screens
+
+### v1.5
+* Rewrote the entire zone-determination code thanks to a better method developed by Kenshi
+* You no longer need lookup tables (vw.lua, dialogs.lua etc can all be deleted) the only additional luas still used are: [subtitles.lua] and [zonelines.lua] 
+* Cutscenes that load new areas should now work correctly - this is hard to test, please report missing loading screens
+* Crystal War era / Retrace no longer needs a temporary screen the first time
+* Fixed a bug where entering Apollyon through a Swirling Vortex in Al'Taieu would show the wrong loading screen
+* Added new images for Everbloom Hollow, Silver Knife, Gwora - Corridor and Gwora - Throne Room, Throne Room [V]
+* Added new images that show if you will be getting pirates on your ferry ride to Mhaura or Selbina
+* Added optional Fade In functionality
+* Added optional functionality to mask your destination when warped by the apprentice warp-NPC in Al Zahbi (Shihu-Danhu)
+
+Files to delete: 
+'actions.lua', 'dialogs.lua', 'escape.lua', 'guides.lua', 'homepoints.lua', 'npcs.lua', 'unity.lua', 'vw.lua', 'waypoints.lua'
+
+New files:
+'subtitles.lua', 
+'data\large\86.png', 'data\large\227.png', 'data\large\228.png', 'data\large\229.png', 'data\large\278.png', 'data\large\283.png', 'data\large\299.png'
+'data\small\86.png', 'data\small\227.png', 'data\small\228.png', 'data\small\229.png', 'data\small\278.png', 'data\small\283.png', 'data\small\299.png'
+
 
 ### v1.4
-Bug fixes:<br>
-Fixed a bug where "Scroll of Instant Warp" was not recognized as a warp item<br>
-Fixed a bug where teleporting to Reisenjima would show the wrong screen if you enter from the Crag of Mea<br>
-<br>
-New Feature(s):<br>
-Added support for Feretory - entering through all cities and Pashhow<br>
-<br>
+* Fixed a bug where "Scroll of Instant Warp" was not recognized as a warp item
+* Fixed a bug where teleporting to Reisenjima would show the wrong screen if you enter from the Crag of Mea
+* Added support for Feretory - entering through all cities and Pashhow
+
 Files to update:
 'tourist.lua', 'dialogs.lua', 'npcs.lua' and new images 'data\large\285.png' + 'data\small\285.png'
 
 ### v1.3
 Bug fixes: 
-fixed a bug where entering Sheol: gaol was not recognized as entering Odyssey
-fixed a bug where teleporting back to your "home" city in Crystal Era zones via a Campaign Arbiter would sometimes show Xarcabard [S] instead of the city. 
-fixed a bug with teleport-spells where a nearby player teleporting would change your zone (lol!)
-fixed a bug where entering Sortie would not be properly recognized if you are not the party leader
-added support for the "Waking the Colossus" battlefield in Nyzul
+* fixed a bug where entering Sheol: gaol was not recognized as entering Odyssey
+* fixed a bug where teleporting back to your "home" city in Crystal Era zones via a Campaign Arbiter would sometimes show Xarcabard [S] instead of the city. 
+* fixed a bug with teleport-spells where a nearby player teleporting would change your zone (lol!)
+* fixed a bug where entering Sortie would not be properly recognized if you are not the party leader
+* added support for the "Waking the Colossus" battlefield in Nyzul
 
 ### v1.2
-Added "Lure of the Wildcat" NPC paid warp to Whitegate (Amutiyaal in South San d'Oria, Alib-Mufalib in Port Bastok, Ibwam in Windurst Woods, and Ajithaam in Upper Jeuno). 
-Added better error handling for NPC lookups, as a lot of cutscenes would create Tourist errors. 
-Bug fixes: Fixed a bug with accessing Dynamis Divergence - Jeuno not being recognized + added missing images. Fixed a bug with "Ernst" not being recognized as an Abyssea Warp NPC. 
+* Added "Lure of the Wildcat" NPC paid warp to Whitegate (Amutiyaal in South San d'Oria, Alib-Mufalib in Port Bastok, Ibwam in Windurst Woods, and Ajithaam in Upper Jeuno). 
+* Added better error handling for NPC lookups, as a lot of cutscenes would create Tourist errors. 
+* Bug fixes: Fixed a bug with accessing Dynamis Divergence - Jeuno not being recognized + added missing images. Fixed a bug with "Ernst" not being recognized as an Abyssea Warp NPC. 
 
 Files to update:
 'tourist.lua', 'dialogs.lua', 'npcs.lua' and new images 'data\large\297.png' + 'data\small\297.png'
 
 ### v1.1
-Fixed a bug where exiting Escha - Zi'tah would sometimes show 'Xarcabard [S]' screen.
-Added 'Repatriation' functionality for using an Outpost NPC to warp back to home nation. 
-Added the three Conquest Outpost Warp NPCs functionality (Jeanvirgaud (North San d'Oria), Conrad (Bastok Mines) and Rottata (Port Windurst))
+* Fixed a bug where exiting Escha - Zi'tah would sometimes show 'Xarcabard [S]' screen.
+* Added 'Repatriation' functionality for using an Outpost NPC to warp back to home nation. 
+* Added the three Conquest Outpost Warp NPCs functionality (Jeanvirgaud (North San d'Oria), Conrad (Bastok Mines) and Rottata (Port Windurst))
 
 If you have v1.0 installed, you *ONLY* need to update 'tourist.lua' and 'npcs.lua'!
 
